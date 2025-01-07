@@ -9,7 +9,7 @@
 <body>
     <header>
         <img src="imagenes/banner.png" width="40%" height="150px"></img>
-        <!-- Botón de inicio de sesión -->
+        
         <div style="float: right; margin-right: 10px;">
             <?php 
                 if (session_status() == PHP_SESSION_NONE) {
