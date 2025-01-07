@@ -1,6 +1,3 @@
-<?php 
-session_start(); // Mover session_start() al inicio antes de cualquier salida
-?>
 <!DOCTYPE html>
 <html>
 
@@ -15,6 +12,7 @@ session_start(); // Mover session_start() al inicio antes de cualquier salida
         <!-- Botón de inicio de sesión -->
         <div style="float: right; margin-right: 10px;">
             <?php 
+                session_start();
                 if(isset($_SESSION['usuario'])){ 
             ?>
                 <a href="./views/interfaces/logout.php" class="boton-sesion">Cerrar sesión</a>
