@@ -1,0 +1,99 @@
+body{
+    background: white ;
+}
+
+header{
+    position: relative;
+    margin: auto;
+    text-align: center;
+    padding: 5px;
+}
+
+nav{
+    position: relative;
+    margin: auto;
+    width: 100%;
+    height: auto;
+    background: rgb(110, 7, 7);
+}
+nav ul{
+    display: flex;
+    position: relative;
+    margin: auto;
+    width: 50%;
+    text-align: none;
+}
+nav ul li{
+    display: inline-block;
+    margin: auto;
+    width: 25%;
+    line-height: 50px;
+    list-style: none;
+    color: white;
+}
+nav ul li a{
+    color: white;
+    text-decoration: none;
+}
+
+section{
+    position: relative;
+    padding: 5px;
+}
+footer{
+    background: rgb(110, 7, 7);
+    color: white;
+    text-align: center;
+    font-size: large;
+}
+
+.parrafos{
+    color: blue;
+    text-align: center;
+}
+.titulos{
+    font-size: 25;
+}
+
+.contact {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.contact h2 {
+    color: #333;
+    font-weight: bold;
+}
+
+.contact .form-control {
+    border: 2px solid #ccc;
+    transition: all 0.3s;
+}
+
+.contact .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+/* Estilo para los botones de inicio y cierre de sesión */
+.boton-sesion {
+    display: inline-block;
+    background-color: rgb(110, 7, 7); /* Color rojo */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.boton-sesion:hover {
+    background-color: #8b0000; /* Rojo más oscuro al pasar el mouse */
+    transform: scale(1.05); /* Le da un efecto de aumento */
+}
+
+.boton-sesion:active {
+    background-color: #5c0202; /* Rojo aún más oscuro cuando se hace clic */
+}
