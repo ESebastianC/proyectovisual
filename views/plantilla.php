@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Mi pagina</title>
+    <title>Grupo 2</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 
@@ -12,8 +12,10 @@
         <!-- Botón de inicio de sesión -->
         <div style="float: right; margin-right: 10px;">
             <?php 
-                session_start();
-                if(isset($_SESSION['usuario'])){ 
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+                if (isset($_SESSION['usuario'])) { 
             ?>
                 <a href="./views/interfaces/logout.php" class="boton-sesion">Cerrar sesión</a>
             <?php 
@@ -39,7 +41,7 @@
         <?php
         require_once "controllers/controller.php";
         require_once "models/model.php";
-        $mvc=new MvcController();
+        $mvc = new MvcController();
         $mvc->enlacesPaginasController();
         ?>
     </section>

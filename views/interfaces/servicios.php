@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Registro de estudiantes Universidad Tecnica de Ambato</title>
+    <title>Registro de estudiantes - Universidad Técnica de Ambato</title>
     <link rel="stylesheet" type="text/css" href="jquery-easyui-1.10.19/themes/black/easyui.css">
     <link rel="stylesheet" type="text/css" href="jquery-easyui-1.10.19/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="jquery-easyui-1.10.19/themes/color.css">
@@ -24,18 +24,17 @@ if (session_status() == PHP_SESSION_NONE) {
             rownumbers="true" fitColumns="true" singleSelect="true">
         <thead>
             <tr>
-                <th field="estCedula" width="50">Cedula</th>
+                <th field="estCedula" width="50">Cédula</th>
                 <th field="estNombre" width="50">Nombre</th>
                 <th field="estApellido" width="50">Apellido</th>
-                <th field="estTelefono" width="50">Telefono</th>
-                <th field="estDireccion" width="50">Direccion</th>
+                <th field="estTelefono" width="50">Teléfono</th>
+                <th field="estDireccion" width="50">Dirección</th>
             </tr>
         </thead>
     </table>
 
     <div id="toolbar">
-        <!-- Verifica si el usuario está autenticado -->
-        <?php if(isset($_SESSION['usuario'])) { ?>
+        <?php if (isset($_SESSION['usuario'])) { ?>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Nuevo Estudiante</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Editar Estudiante</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Borrar Estudiante</a>
@@ -44,9 +43,8 @@ if (session_status() == PHP_SESSION_NONE) {
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="alertLogin()">Editar Estudiante</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="alertLogin()">Borrar Estudiante</a>
         <?php } ?>
-        
         <a href="reportes/reporte.php" class="easyui-linkbutton" iconCls="icon-ok" plain="true" target="_blank">Reporte</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="reporte()" > Generar Reporte Especifico</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="reporte()">Generar Reporte Específico</a>
         <a href="reportes/reporteireport.php" class="easyui-linkbutton" iconCls="icon-ok" plain="true" target="_blank">Ireport</a>
     </div>
 
@@ -54,7 +52,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
             <h3>Registro Estudiante</h3>
             <div style="margin-bottom:10px">
-                <input id="idcedula" name="cedula" class="easyui-textbox" required="true" label="Cedula:" style="width:100%" >
+                <input id="idcedula" name="cedula" class="easyui-textbox" required="true" label="Cédula:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
                 <input name="nombre" class="easyui-textbox" required="true" label="Nombre:" style="width:100%">
@@ -63,10 +61,10 @@ if (session_status() == PHP_SESSION_NONE) {
                 <input name="apellido" class="easyui-textbox" required="true" label="Apellido:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
-                <input name="telefono" class="easyui-textbox" required="true" label="Telefono:" style="width:100%">
+                <input name="telefono" class="easyui-textbox" required="true" label="Teléfono:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
-                <input name="direccion" class="easyui-textbox" required="true" label="Direccion:" style="width:100%">
+                <input name="direccion" class="easyui-textbox" required="true" label="Dirección:" style="width:100%">
             </div>
         </form>
     </div>
@@ -78,35 +76,30 @@ if (session_status() == PHP_SESSION_NONE) {
 
     <script type="text/javascript">
         var url;
-        
+
         function alertLogin() {
-            $.messager.confirm('Error', 'Debe iniciar sesión para realizar esta acción.', function(r) {
-                if (r) {
-                    window.location.href = './views/interfaces/login.php'; // Redirige al login
-                }
-            });
+            $.messager.alert('Acceso denegado', 'Debe iniciar sesión para realizar esta acción.', 'warning');
         }
 
-        function newUser(){
-            <?php if(!isset($_SESSION['usuario'])) { ?>
+        function newUser() {
+            <?php if (!isset($_SESSION['usuario'])) { ?>
                 alertLogin();
                 return;
             <?php } ?>
-            $('#dlg').dialog('open').dialog('center').dialog('setTitle','Nuevo Estudiante');
+            $('#dlg').dialog('open').dialog('center').dialog('setTitle', 'Nuevo Estudiante');
             $('#fm').form('clear');
             $('#idcedula').textbox('readonly', false);
             url = 'models/guardar.php';
         }
 
-        function editUser(){
-            <?php if(!isset($_SESSION['usuario'])) { ?>
+        function editUser() {
+            <?php if (!isset($_SESSION['usuario'])) { ?>
                 alertLogin();
                 return;
             <?php } ?>
             var row = $('#dg').datagrid('getSelected');
-            if (row){
-                $('#dlg').dialog('open').dialog('center').dialog('setTitle','Editar Estudiante');
-                
+            if (row) {
+                $('#dlg').dialog('open').dialog('center').dialog('setTitle', 'Editar Estudiante');
                 var formData = {
                     cedula: row.estCedula,
                     nombre: row.estNombre,
@@ -114,50 +107,52 @@ if (session_status() == PHP_SESSION_NONE) {
                     direccion: row.estDireccion,
                     telefono: row.estTelefono
                 };
-
                 $('#fm').form('load', formData);
-
                 $('#idcedula').textbox('readonly', true);
                 url = 'models/editar.php?cedula=' + row.estCedula;
+            } else {
+                $.messager.alert('Atención', 'Seleccione un estudiante para editar.', 'info');
             }
         }
 
-        function destroyUser(){
-            <?php if(!isset($_SESSION['usuario'])) { ?>
+        function destroyUser() {
+            <?php if (!isset($_SESSION['usuario'])) { ?>
                 alertLogin();
                 return;
             <?php } ?>
             var row = $('#dg').datagrid('getSelected');
-            if (row){
-                $.messager.confirm('Confirm','¿Seguro que quieres borrar?',function(r){
-                    if (r){
-                        $.post('models/borrar.php',{cedula:row.estCedula},function(result){
-                            if (!result.success){
-                                $('#dg').datagrid('reload'); // recarga los datos
-                            } else {
-                                $.messager.show({ // muestra el mensaje de error
+            if (row) {
+                $.messager.confirm('Confirmar', '¿Está seguro de borrar este estudiante?', function(r) {
+                    if (r) {
+                        $.post('models/eliminar.php', { cedula: row.estCedula }, function(result) {
+                            if (result.errorMsg) {
+                                $.messager.show({
                                     title: 'Error',
                                     msg: result.errorMsg
                                 });
+                            } else {
+                                $('#dg').datagrid('reload');
                             }
-                        },'json');
+                        }, 'json');
                     }
                 });
+            } else {
+                $.messager.alert('Atención', 'Seleccione un estudiante para borrar.', 'info');
             }
         }
 
-        function saveUser(){
-            $('#fm').form('submit',{
+        function saveUser() {
+            $('#fm').form('submit', {
                 url: url,
-                onSubmit: function(){
+                onSubmit: function() {
                     return $(this).form('validate');
                 },
-                success: function(result){
-                    var result = eval('('+result+')');
-                    if (result.errorMsg){
+                success: function(result) {
+                    var resultData = JSON.parse(result);
+                    if (resultData.errorMsg) {
                         $.messager.show({
                             title: 'Error',
-                            msg: result.errorMsg
+                            msg: resultData.errorMsg
                         });
                     } else {
                         $('#dlg').dialog('close');
@@ -166,15 +161,6 @@ if (session_status() == PHP_SESSION_NONE) {
                 }
             });
         }
-
-        function reporte() {
-            var row = $('#dg').datagrid('getSelected');
-            if (row) {
-                var cedula = row.estCedula;
-                window.open('reportes/reporteParametro.php?cedula=' + cedula, '_blank');
-            }
-        }
     </script>
-
 </body>
 </html>
